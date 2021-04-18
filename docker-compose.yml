@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.9"
 
 services:
   desktop:
@@ -6,6 +6,12 @@ services:
     container_name: desktop
     ports:
       - "2222:22"
+    tmpfs:
+      - /run
+      - /tmp
+      - /run/lock
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
   guacamole:
     build: guacamole
     container_name: guacamole
