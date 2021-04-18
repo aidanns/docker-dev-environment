@@ -1,0 +1,32 @@
+version: "3.3"
+
+services:
+  desktop:
+    build: desktop
+    container_name: desktop
+    ports:
+      - "2222:22"
+  guacamole:
+    build: guacamole
+    container_name: guacamole
+    environment:
+      GUACD_HOSTNAME: guacd
+      POSTGRES_HOSTNAME: guacamole-postgres
+      POSTGRES_DATABASE: guacamole
+      POSTGRES_USER: guacamole
+      POSTGRES_PASSWORD: password
+    ports:
+      - "8080:8080"
+  guacd:
+    build: guacd
+    container_name: guacd
+    hostname: guacd
+  guacamole-postgres:
+    build: guacamole-postgres
+    container_name: guacamole-postgres
+    hostname: guacamole-postgres
+    environment:
+      POSTGRES_DB: guacamole
+      POSTGRES_USER: guacamole
+      POSTGRES_PASSWORD: password
+
