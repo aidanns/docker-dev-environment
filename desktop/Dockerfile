@@ -46,4 +46,6 @@ RUN useradd developer \
 
 COPY rootfs /
 
+ENV container docker
+
 ENTRYPOINT [ "/sbin/init" ]
