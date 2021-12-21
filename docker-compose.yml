@@ -6,13 +6,12 @@ services:
     container_name: desktop
     ports:
       - "2222:22"
+    privileged: true
     tmpfs:
       - /run
       - /tmp
       - /run/lock
     tty: true
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
   guacamole:
     build: guacamole
     container_name: guacamole

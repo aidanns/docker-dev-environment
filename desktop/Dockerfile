@@ -48,4 +48,6 @@ COPY rootfs /
 
 ENV container docker
 
+STOPSIGNAL SIGRTMIN+3
+
 ENTRYPOINT [ "/sbin/init" ]
