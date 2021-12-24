@@ -2,6 +2,13 @@ FROM ubuntu:20.04
 
 LABEL maintainer="Aidan Nagorcka-Smith <aidanns@gmail.com>"
 
+# See https://systemd.io/CONTAINER_INTERFACE/ for what systemd wants so that
+# it can run in a container.
+
+ENV container docker
+
+STOPSIGNAL SIGRTMIN+3
+
 # /bin/sh is the default
 SHELL [ "/bin/bash", "-c" ]
 
@@ -45,9 +52,5 @@ RUN useradd developer \
     echo "developer:developer" | chpasswd developer
 
 COPY rootfs /
-
-ENV container docker
-
-STOPSIGNAL SIGRTMIN+3
 
 ENTRYPOINT [ "/sbin/init" ]
