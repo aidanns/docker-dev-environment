@@ -53,4 +53,59 @@ RUN useradd developer \
 
 COPY rootfs /
 
+# References:
+#   https://github.com/coder/enterprise-images/blob/main/images/vnc/Dockerfile.ubuntu
+#   https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-20-04
+
+ARG DEBCONF_NONINTERACTIVE_SEEN=true
+ARG DEBIAN_FRONTEND="noninteractive"
+ARG ARCH=arm64
+
+RUN echo 'tzdata tzdata/Areas select Etc' | debconf-set-selections; \
+    echo 'tzdata tzdata/Zones/Etc select UTC' | debconf-set-selections
+
+RUN apt-get update && apt-get install -y \
+    wget \
+    unzip \
+    zsh \
+    supervisor \
+    xorg \
+    ssh \
+    xfce4 \
+    xfce4-goodies \
+    x11-apps \
+    xterm \
+    python-numpy \
+    firefox \
+    fonts-lyx \
+    libxtst6 \
+    libxv1 \
+    libglu1-mesa \
+    libc6-dev \
+    libglu1 \
+    libsm6 \
+    libxv1 \
+    x11-xkb-utils \
+    xauth \
+    xfonts-base \
+    xkb-data \
+    tightvncserver
+
+# Install quality of life packages.
+RUN yes | unminimize
+
+# Remove packages which may not behave well in a VNC environment.
+RUN apt-get remove -y \
+  xfce4-battery-plugin \
+  xfce4-power-manager-plugins \
+  xfce4-pulseaudio-plugin \
+  light-locker
+
+RUN locale-gen en_US.UTF-8
+
+USER developer
+
+EXPOSE 5901
+EXPOSE 22
+
 ENTRYPOINT [ "/sbin/init" ]

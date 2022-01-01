@@ -12,6 +12,8 @@ A linux development environment, running in docker.
 
 3. Log in with username `guacadmin` and password `guacadmin`.
 
+4. Log in via SSH with username `developer` and password `developer` or VNC with password `developer`
+
 ## Maintainer
 
 Aidan Nagorcka-Smith (aidanns@gmail.com)
