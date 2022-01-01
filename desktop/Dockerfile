@@ -53,6 +53,8 @@ RUN useradd developer \
 
 COPY rootfs /
 
+RUN chown -R developer:developer /home/developer
+
 # References:
 #   https://github.com/coder/enterprise-images/blob/main/images/vnc/Dockerfile.ubuntu
 #   https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-20-04
