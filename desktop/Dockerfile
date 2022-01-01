@@ -103,8 +103,6 @@ RUN apt-get remove -y \
 
 RUN locale-gen en_US.UTF-8
 
-USER developer
-
 EXPOSE 5901
 EXPOSE 22
 
