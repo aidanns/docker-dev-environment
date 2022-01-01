@@ -53,7 +53,8 @@ RUN useradd developer \
 
 COPY rootfs /
 
-RUN chown -R developer:developer /home/developer
+RUN chown -R developer:developer /home/developer && \
+    chmod 700 /home/developer/.vnc/passwd
 
 # References:
 #   https://github.com/coder/enterprise-images/blob/main/images/vnc/Dockerfile.ubuntu
