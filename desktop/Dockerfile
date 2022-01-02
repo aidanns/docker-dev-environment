@@ -29,6 +29,7 @@ RUN apt-get update && \
       firefox \
       fonts-lyx \
       htop \
+      inetutils-ping \
       libc6-dev \
       libglu1 \
       libglu1-mesa \
