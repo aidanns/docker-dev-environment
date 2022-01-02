@@ -4,8 +4,10 @@ services:
   desktop:
     build: desktop
     container_name: desktop
+    hostname: desktop
     ports:
       - "2222:22"
+      - "5901:5901"
     privileged: true
     tmpfs:
       - /run
